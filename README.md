@@ -2,13 +2,18 @@
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-01-14 16:59:36
  * @LastEditors: hibana2077 hibana2077@gmail.com
- * @LastEditTime: 2023-01-14 18:12:14
+ * @LastEditTime: 2023-01-15 07:39:23
  * @FilePath: \NTTU-new-gen-judge-system\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 # NTTUjudge 台東大學程式設計評判系統
 
-![streamlit](https://img.shields.io/badge/streamlit-0.81.1-blue)
+![python](https://img.shields.io/badge/python-3.10-blue?style=plastic-square&logo=python)
+![streamlit](https://img.shields.io/badge/streamlit-1.14.0-FF4B4B?style=plastic-square&logo=streamlit)
+![fastapi](https://img.shields.io/badge/fastapi-0.85.1-009688?style=plastic-square&logo=fastapi)
+![mongodb](https://img.shields.io/badge/mongodb-4.4.6-47A248?style=plastic-square&logo=mongodb)
+![docker](https://img.shields.io/badge/docker-20.10.8-2496ED?style=plastic-square&logo=docker)
+![Guvicorn](https://img.shields.io/badge/Guvicorn-0.19.0-499848?style=plastic-square&logo=Gunicorn)
 
 ## 介紹
 
@@ -76,3 +81,13 @@ NTTUjudge 是一個簡單的程式設計評判系統，使用者可以在網頁�
         - message
     - GET
         - messages
+
+- /admin
+    - POST
+        - problem_detail
+    - GET
+        - problem_detail
+
+#### runner
+
+執行程式碼，並且回傳執行結果。
