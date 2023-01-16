@@ -1,8 +1,8 @@
 <!--
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-01-14 16:59:36
- * @LastEditors: hibana2077 hibana2077@gmail.com
- * @LastEditTime: 2023-01-15 07:39:23
+ * @LastEditors: hibana2077 hibana2077@gmaill.com
+ * @LastEditTime: 2023-01-16 22:35:45
  * @FilePath: \NTTU-new-gen-judge-system\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -91,3 +91,12 @@ NTTUjudge 是一個簡單的程式設計評判系統，使用者可以在網頁�
 #### runner
 
 執行程式碼，並且回傳執行結果。
+
+
+## Docker compose 功能
+
+### 啟動
+
+1. 啟動 mogoDB image port:207701
+2. 啟動 後端 image port:207702 -> 如果覺得太慢 可以改成Load balancer 架構
+3. 啟動 前端 image port:80 -> No ssl -> 考慮跟老師建議使用 streamlit share -> 穩定度高
