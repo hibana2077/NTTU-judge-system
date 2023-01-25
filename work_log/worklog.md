@@ -3,6 +3,8 @@
 
 ## 2023/01/24
 
+### 進度報告
+
 - mongoDB
     - 初次使用docker運行mongoDB
     - 使用Linode的vm模擬辦公室的伺服器
@@ -15,3 +17,7 @@
     - 使用pymongo連線到mongoDB，且確認資料存放方式。
     - 使用pymongo寫入資料
     - 程式碼紀錄位於`backend/database/lab.py`
+
+### 新增事項
+
+- 考慮到部署時，是直接拉官方的image，所以要加一個`database_setup.py`，用來建立資料庫的collection，並且建立一個admin帳號。以及在`docker-compose.yml`加入建立`database`資料夾。
