@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:12:07
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-01-26 10:51:24
+LastEditTime: 2023-01-26 15:32:42
 FilePath: /NTTU-new-gen-judge-system/frontend/client.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -12,6 +12,11 @@ import streamlit as st
 import streamlit_authenticator as stauth
 from streamlit_option_menu import option_menu
 import pandas as pd
+
+switch_button = st.sidebar.radio(
+        "Teacher or Student?",
+        ("Teacher", "Student")
+    )
 
 with open("frontend/config.yaml", "r") as f:
     config = yaml.load(f, Loader=yaml.SafeLoader)
@@ -37,7 +42,8 @@ def rank():
 def profile():
     st.write("Profile")
 
-
+def contest_setting():
+    st.write("Contest setting")
 
 # authenticator = stauth.Authenticate(
 #     config['credentials'],
@@ -58,10 +64,6 @@ def profile():
 #     st.error('Username/password is incorrect')
 # elif authentication_status == None:
 #     st.warning('Please enter your username and password')
-
-
-# 1=sidebar menu, 2=horizontal menu, 3=horizontal menu w/ custom menu
-EXAMPLE_NO = 1
 
 
 def streamlit_menu(example=1):
@@ -88,6 +90,28 @@ def streamlit_menu(example=1):
             orientation="horizontal",
         )
         return selected
+    
+def streamlit_menu_switch(case="Student"):
+    if case == "Student":
+        with st.sidebar:
+            selected = option_menu(
+                menu_title="學生選單",  # required
+                options=["Home", "Problem", "Contest"],  # required
+                icons=["house", "book", "envelope"],  # optional
+                menu_icon="list",  # optional
+                default_index=0,  # optional
+            )
+        return selected
+    else:
+        with st.sidebar:
+            selected = option_menu(
+                menu_title="管理者選單",  # required
+                options=["Home", "Contest setting"],  # required
+                icons=["house", "book", "envelope"],  # optional
+                menu_icon="list",  # optional
+                default_index=0,  # optional
+            )
+        return selected
 
 PAGES = {
     "Home": home,
@@ -97,5 +121,10 @@ PAGES = {
     "Profile": profile
 }
 
-page = PAGES[streamlit_menu(EXAMPLE_NO)]
+PAGES_TEACHER = {
+    "Home": home,
+    "Contest setting": contest_setting,
+}
+
+page = PAGES[streamlit_menu_switch(switch_button)] if switch_button == "Student" else PAGES_TEACHER[streamlit_menu_switch(switch_button)]
 page()
