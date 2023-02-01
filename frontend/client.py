@@ -113,6 +113,5 @@ elif st.session_state.name != None:
     page = STUDENT_PAGES[streamlit_menu_switch("Student")]
 else:
     page = CUSTOMER_PAGES[streamlit_menu_switch("Visitor")]
-print(st.session_state.name)
 page()
 # print(st.session_state)
