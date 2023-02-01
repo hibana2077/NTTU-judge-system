@@ -8,6 +8,10 @@ credentials:
       email: rbriggs@gmail.com
       name: Rebecca Briggs
       password: $2b$12$57YVLPfYjXfWfQeMyfpyCufdJRrKgUWYU3nxsnFX4BQuqIpIZvTiO # To be replaced with hashed password
+    admin:
+      email: hibana2077@gmail.com
+      name: Admin
+      password: $2b$12$WMXwJG3M46Mefjvj0DY92uyz5f0P0LeDe1Aa.QK9Z0QyQzKtfbHo.
 cookie:
   expiry_days: 30
   key: some_signature_key

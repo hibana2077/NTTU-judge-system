@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:13:39
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-01-26 10:51:25
+LastEditTime: 2023-02-01 18:08:05
 FilePath: /NTTU-new-gen-judge-system/backend/apiServer.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -19,10 +19,19 @@ class User(BaseModel):
     password: str
 
 class Sumbit(BaseModel):
-    id: str #user id + problem id + session id
+    id: str #(user id + problem id + session id + time)Hash -> 用來當檔案名稱
     question_id: str #question id
     code: str #code
     language: str #language -> python3, node, ruby, c, cpp
+
+#create judge temp dir
+if not os.path.exists("judge"):
+    os.mkdir("judge")
+    os.mkdir("judge/code")
+elif not os.path.exists("judge/code"):
+    os.mkdir("judge/code")
+else:
+    pass
 
 class Judge():
     def __init__(self, id, code, language, judge_mode, time_limit, question_id):
@@ -33,27 +42,21 @@ class Judge():
         self.time_limit = time_limit
         self.question_id = question_id
     
-    def judge(self):
-        new_dir_path = f"./temp"
-        if not os.path.exists(new_dir_path):
-            os.mkdir(new_dir_path)
-        os.chdir(new_dir_path)
-        if self.language == "python3":
-            os.system(f"echo {self.code} > {self.id}.py")
-        elif self.language == "node":
-            os.system(f"echo {self.code} > {self.id}.js")
-        elif self.language == "ruby":
-            os.system(f"echo {self.code} > {self.id}.rb")
-        elif self.language == "c":
-            os.system(f"echo {self.code} > {self.id}.c")
-        elif self.language == "cpp":
-            os.system(f"echo {self.code} > {self.id}.cpp")
-        elif self.language == "lua":
-            os.system(f"echo {self.code} > {self.id}.lua")
-        elif self.language == "rust":
-            os.system(f"echo {self.code} > {self.id}.rs")
-        elif self.language == "go":
-            os.system(f"echo {self.code} > {self.id}.go")
+    def to_file(self):
+        '''
+        @description: 將code寫入檔案
+        @param {*}
+        @return: 檔案名稱
+        '''
+        language_mapping = {
+            "python3": "py",
+            "node": "js",
+            "ruby": "rb",
+            "c": "c",
+            "cpp": "cpp"
+        }
+        file_name = self.id + "." + language_mapping[self.language]
+        localaciton = os.path.join(os.getcwd(), "judge", "code", file_name)
 
         
         

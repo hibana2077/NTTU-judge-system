@@ -4,21 +4,40 @@ import streamlit as st
 import streamlit_authenticator as stauth
 from streamlit_option_menu import option_menu
 import pandas as pd
-from time import time
 
 switch_button = st.sidebar.radio(
         "User mode",
         ("Teacher", "Student")
     )
+if 'switch_button' not in st.session_state:
+    st.session_state.switch_button = switch_button
+# elif st.session_state.switch_button != switch_button:
 
-with open("frontend/config.yaml", "r") as f:
-    config = yaml.load(f, Loader=yaml.SafeLoader)
-
-# hashed_passwords = stauth.Hasher('admin').generate()
+# hashed_passwords = stauth.Hasher(['admin']).generate()
 # print(hashed_passwords)
 
 def login(mode:str):
-    print(f"Mode: {mode} , Time: {time()}")
+    with open("frontend/config.yaml", "r") as f:config = yaml.load(f, Loader=yaml.SafeLoader)
+    authenticator = stauth.Authenticate(
+    config['credentials'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'],
+    config['preauthorized']
+)
+
+
+    name, authentication_status, username = authenticator.login('Login', 'main')
+
+    if authentication_status:
+        authenticator.logout('Logout', 'sidebar')
+        st.write(f'Welcome *{name}*')
+    elif authentication_status == False:
+        st.error('Username/password is incorrect')
+    elif authentication_status == None:
+        st.warning('Please enter your username and password')
+
+    return name, authentication_status, username
 
 def home(mode:str):
     st.title("NTTU Online Judge")
@@ -37,27 +56,6 @@ def profile(mode:str):
 
 def contest_setting(mode:str):
     st.write("Contest setting")
-
-# authenticator = stauth.Authenticate(
-#     config['credentials'],
-#     config['cookie']['name'],
-#     config['cookie']['key'],
-#     config['cookie']['expiry_days'],
-#     config['preauthorized']
-# )
-
-
-# name, authentication_status, username = authenticator.login('Login', 'main')
-
-# if authentication_status:
-#     authenticator.logout('Logout', 'main')
-#     st.write(f'Welcome *{name}*')
-#     st.title('Some content')
-# elif authentication_status == False:
-#     st.error('Username/password is incorrect')
-# elif authentication_status == None:
-#     st.warning('Please enter your username and password')
-
 
 def streamlit_menu(example=1):
     if example == 1:
@@ -95,14 +93,24 @@ def streamlit_menu_switch(case="Student"):
                 default_index=0,  # optional
             )
         return selected
-    else:
+    if case == "Teacher":
         with st.sidebar:
             selected = option_menu(
                 menu_title="管理者選單",  # required
                 options=["Home", "Contest setting","Login"],  # required
-                icons=["house", "book", "envelope","box-arrow-in-right"],  # optional
+                icons=["house", "book","box-arrow-in-right"],  # optional
                 menu_icon="list",  # optional
                 default_index=0,  # optional
+            )
+        return selected
+    else:
+        with st.sidebar:
+            selected = option_menu(
+                menu_title="預設選單",  # required
+                options=["Home", "Problem", "Contest","Login"],  # required
+                icons=["house", "book", "envelope","box-arrow-in-right"],  # optional
+                menu_icon="list",  # optional
+                default_index=0
             )
         return selected
 
@@ -121,5 +129,17 @@ PAGES_TEACHER = {
     "Login": login
 }
 
-page = PAGES[streamlit_menu_switch(switch_button)] if switch_button == "Student" else PAGES_TEACHER[streamlit_menu_switch(switch_button)]
-page(switch_button)
+ADMIN_PAGES = {
+    "Home": home,
+    "Contest setting": contest_setting,
+}
+
+STUDENT_PAGES  = {
+    "Home": home,
+    "Problem": problem,
+    "Contest": contest,
+}
+
+page = PAGES[streamlit_menu_switch(st.session_state.switch_button)] if st.session_state.switch_button else PAGES_TEACHER[streamlit_menu_switch(st.session_state.switch_button)]
+page(st.session_state.switch_button)
+# print(st.session_state)
