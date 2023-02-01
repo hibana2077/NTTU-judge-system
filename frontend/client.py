@@ -1,20 +1,13 @@
-'''
-Author: hibana2077 hibana2077@gmaill.com
-Date: 2023-01-16 22:12:07
-LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-01-26 15:32:42
-FilePath: /NTTU-new-gen-judge-system/frontend/client.py
-Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
-'''
 import requests
 import yaml
 import streamlit as st
 import streamlit_authenticator as stauth
 from streamlit_option_menu import option_menu
 import pandas as pd
+from time import time
 
 switch_button = st.sidebar.radio(
-        "Teacher or Student?",
+        "User mode",
         ("Teacher", "Student")
     )
 
@@ -24,25 +17,25 @@ with open("frontend/config.yaml", "r") as f:
 # hashed_passwords = stauth.Hasher('admin').generate()
 # print(hashed_passwords)
 
-def login():
-    pass
+def login(mode:str):
+    print(f"Mode: {mode} , Time: {time()}")
 
-def home():
+def home(mode:str):
     st.title("NTTU Online Judge")
 
-def problem():
+def problem(mode:str):
     st.write("Problem")
 
-def contest():
+def contest(mode:str):
     st.write("Contest")
 
-def rank():
+def rank(mode:str):
     st.write("Rank")
 
-def profile():
+def profile(mode:str):
     st.write("Profile")
 
-def contest_setting():
+def contest_setting(mode:str):
     st.write("Contest setting")
 
 # authenticator = stauth.Authenticate(
@@ -96,8 +89,8 @@ def streamlit_menu_switch(case="Student"):
         with st.sidebar:
             selected = option_menu(
                 menu_title="學生選單",  # required
-                options=["Home", "Problem", "Contest"],  # required
-                icons=["house", "book", "envelope"],  # optional
+                options=["Home", "Problem", "Contest","Login"],  # required
+                icons=["house", "book", "envelope","box-arrow-in-right"],  # optional
                 menu_icon="list",  # optional
                 default_index=0,  # optional
             )
@@ -106,8 +99,8 @@ def streamlit_menu_switch(case="Student"):
         with st.sidebar:
             selected = option_menu(
                 menu_title="管理者選單",  # required
-                options=["Home", "Contest setting"],  # required
-                icons=["house", "book", "envelope"],  # optional
+                options=["Home", "Contest setting","Login"],  # required
+                icons=["house", "book", "envelope","box-arrow-in-right"],  # optional
                 menu_icon="list",  # optional
                 default_index=0,  # optional
             )
@@ -118,13 +111,15 @@ PAGES = {
     "Problem": problem,
     "Contest": contest,
     "Rank": rank,
-    "Profile": profile
+    "Profile": profile,
+    "Login": login
 }
 
 PAGES_TEACHER = {
     "Home": home,
     "Contest setting": contest_setting,
+    "Login": login
 }
 
 page = PAGES[streamlit_menu_switch(switch_button)] if switch_button == "Student" else PAGES_TEACHER[streamlit_menu_switch(switch_button)]
-page()
+page(switch_button)
