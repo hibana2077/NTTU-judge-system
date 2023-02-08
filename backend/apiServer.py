@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:13:39
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-02-02 17:55:09
+LastEditTime: 2023-02-07 23:59:23
 FilePath: /NTTU-new-gen-judge-system/backend/apiServer.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -27,20 +27,10 @@ class Sumbit(BaseModel):
     code: str #code
     language: str #language -> python3, node, ruby, c, cpp
 
-#create judge temp dir
-if not os.path.exists("judge"):
-    os.mkdir("judge")
-    os.mkdir("judge/code")
-elif not os.path.exists("judge/code"):
-    os.mkdir("judge/code")
-else:
-    pass
+#create a directory to store the runtimes
+os.mkdir("runtime")
+os.chdir("runtime")
                 
-            
-
-        
-        
-
 
 app = FastAPI()
 mogodb_client = pymongo.MongoClient("mongodb://localhost:27017/")#先放在本地 之後看有沒有要放到雲端去
@@ -57,3 +47,4 @@ def login_data():
     @param {*}
     @return: dict
     '''
+    
