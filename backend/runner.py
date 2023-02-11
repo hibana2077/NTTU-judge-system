@@ -2,11 +2,12 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-25 10:29:35
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-02-08 22:41:30
+LastEditTime: 2023-02-10 14:32:31
 FilePath: /NTTU-new-gen-judge-system/backend/database/runner.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 import os
+import sys
 import subprocess
 
 class Judge():
@@ -26,15 +27,15 @@ class Judge():
         @param {*}
         @return {*}
         '''
-        os.mkdir(self.id)   
+        os.mkdir(self.id)#id   
         os.chdir(self.id)
-        os.mkdir("judge")
+        os.mkdir("judge")#id/judge
         os.chdir("judge")
-        os.mkdir("code")
+        os.mkdir("code")#id/judge/code
         os.chdir("code")
         self.code2file()
-        os.chdir("..")
-        os.chdir("..")
+        os.chdir("..")#id/judge
+        os.chdir("..")#id
 
 
     def case2file(self, case):
@@ -81,9 +82,8 @@ class Judge():
         @param {*}
         @return {*}
         '''
-        os.chdir("..")
-        os.chdir("..")
-        os.rmdir(self.id)
+        os.chdir("..")#id的上一層
+        os.rmdir(self.id)#刪除id
     
     def code2file(self):
         '''
