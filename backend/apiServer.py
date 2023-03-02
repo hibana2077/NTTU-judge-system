@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:13:39
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-02-12 22:06:04
+LastEditTime: 2023-03-02 18:25:59
 FilePath: /NTTU-new-gen-judge-system/backend/apiServer.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -53,7 +53,7 @@ def create_JWT_token():
 os.mkdir("runtime")
 os.chdir("runtime")
                 
-
+#test
 app = FastAPI()
 mogodb_client = pymongo.MongoClient("mongodb://localhost:27017/")#先放在本地 之後看有沒有要放到雲端去
 
