@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:13:39
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-03-02 18:25:59
+LastEditTime: 2023-03-06 13:27:51
 FilePath: /NTTU-new-gen-judge-system/backend/apiServer.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -73,7 +73,7 @@ def vue_login(user: User):
     collection = db["user"]
     user_data = collection.find_one({"username": user.username})
     if user_data == None:
-        return {"status": "fail", "message": "user not found"}#沒找到直接回傳錯誤
+        return {"status": "fail", "message": "user not found","code":"004"}#沒找到直接回傳錯誤
     else:
         if user_data["password"] == user.password:
             #正確後建立JWT token 存放在session跟DB
