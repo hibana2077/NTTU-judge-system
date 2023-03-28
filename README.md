@@ -9,7 +9,6 @@
 # NTTUjudge 台東大學程式設計評判系統
 
 ![python](https://img.shields.io/badge/python-3.10-blue?style=plastic-square&logo=python)
-![streamlit](https://img.shields.io/badge/streamlit-1.14.0-FF4B4B?style=plastic-square&logo=streamlit)
 ![fastapi](https://img.shields.io/badge/fastapi-0.85.1-009688?style=plastic-square&logo=fastapi)
 ![mongodb](https://img.shields.io/badge/mongodb-4.4.6-47A248?style=plastic-square&logo=mongodb)
 ![docker](https://img.shields.io/badge/docker-20.10.8-2496ED?style=plastic-square&logo=docker)
