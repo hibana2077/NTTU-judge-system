@@ -1,14 +1,16 @@
 <!--
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-01-14 16:59:36
- * @LastEditors: hibana2077 hibana2077@gmaill.com
- * @LastEditTime: 2023-01-18 08:44:04
+ * @LastEditors: hibana2077 hibana2077@gmail.com
+ * @LastEditTime: 2023-04-27 17:44:33
  * @FilePath: \NTTU-new-gen-judge-system\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 # NTTUjudge 台東大學程式設計評判系統
 
+![Nodejs](https://img.shields.io/badge/Nodejs-18.15.0-339933?style=plastic-square&logo=Node.js)
 ![python](https://img.shields.io/badge/python-3.10-blue?style=plastic-square&logo=python)
+![Nuxtjs](https://img.shields.io/badge/Nuxtjs-3.4-00C58E?style=plastic-square&logo=Nuxt.js)
 ![fastapi](https://img.shields.io/badge/fastapi-0.85.1-009688?style=plastic-square&logo=fastapi)
 ![mongodb](https://img.shields.io/badge/mongodb-4.4.6-47A248?style=plastic-square&logo=mongodb)
 ![docker](https://img.shields.io/badge/docker-20.10.8-2496ED?style=plastic-square&logo=docker)
@@ -18,15 +20,18 @@
 
 NTTUjudge 是一個簡單的程式設計評判系統，使用者可以在網頁上編輯程式碼，並且在網頁上即時看到程式的執行結果。
 
-本系統使用 [streamlit](https://streamlit.io/) 作為前端，使用 [fastapi](https://fastapi.tiangolo.com/) 作為後端，使用 [mongodb](https://www.mongodb.com/) 作為資料庫。
+本系統使用 [nuxtjs](https://nuxt.com/) 作為前端，使用 [fastapi](https://fastapi.tiangolo.com/) 作為後端，使用 [mongodb](https://www.mongodb.com/) 作為資料庫。
 
 ## 技術架構
 
 ### 前端
 
-- streamlit
-    - streamlit-auth
-    - requests
+- nuxtjs
+    - axios
+    - vuetify
+    - vue-codemirror
+    - vue-socket.io
+    - socket.io-client
 
 ### 後端
 
