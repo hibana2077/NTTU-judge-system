@@ -1,3 +1,11 @@
+<!--
+ * @Author: hibana2077 hibana2077@gmaill.com
+ * @Date: 2023-01-24 17:15:14
+ * @LastEditors: hibana2077 hibana2077@gmaill.com
+ * @LastEditTime: 2023-05-01 15:35:02
+ * @FilePath: /NTTU-new-gen-judge-system/work_log/worklog.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 
 # 工作進度紀錄
 
@@ -31,3 +39,10 @@
     - 透過`session`，完成不同身份的頁面跳轉。
     - UX/UI 些微優化。
 - 然後`session`真是個好東西，可以用來存放登入資訊，並且可以在不同的頁面之間傳遞資訊。
+
+## 2023/05/01
+
+### 進度報告
+
+- 把前端streamlit換成nuxt.js,因為streamlit的功能太少了，而且不太好用。
+- 使用docker-compose建立一個stack，裡面包含了mongoDB,backend,frontend，並且驗證了內部網路可以互通。 -> lab/connect_test

@@ -1,0 +1,31 @@
+version: '3.9'
+
+services:
+  
+  host01:
+    image: tthost
+    container_name: host01
+    expose:
+      - "80:8000"
+    networks:
+      - mynet
+
+  host02:
+    image: tthost
+    container_name: host02
+    ports:
+      - "8081:8000"
+    networks:
+      - mynet
+
+  database:
+    image: mongo
+    container_name: database
+    ports:
+      - "27017:27017"
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge
