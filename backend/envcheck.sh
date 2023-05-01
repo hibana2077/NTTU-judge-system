@@ -1,5 +1,13 @@
 #!/bin/bash
 
+echo "檢查C編譯器(gcc)..."
+if command -v gcc >/dev/null 2>&1; then
+    echo "C編譯器(gcc)已安裝。"
+    gcc --version | head -n 1
+else
+    echo "C編譯器(gcc)未安裝。"
+fi
+
 echo "檢查C++編譯器(g++)..."
 if command -v g++ >/dev/null 2>&1; then
     echo "C++編譯器(g++)已安裝。"
