@@ -1,11 +1,10 @@
 <template>
-    <div class="bg-white py-24">
-      <div class="flex flex-col items-center">
-        <h1 class="text-6xl font-semibold text-gray-800">这里是首页</h1>
-        <div class="my-4 flex space-x-4">
-          <NuxtLink to="/about">前往 About</NuxtLink>
-          <NuxtLink to="/contact">前往 Contact</NuxtLink>
-        </div>
-      </div>
-    </div>
-  </template>
+  <div class="common-layout">
+    <el-container>
+      <el-aside width="200px" style="--tw-bg-opacity: 1; background-color: rgba(167, 243, 208, var(--tw-bg-opacity));	">Aside</el-aside>
+      <el-main style="--tw-bg-opacity: 1; background-color: rgba(254, 202, 202, var(--tw-bg-opacity));	">
+        Main
+      </el-main>
+    </el-container>
+  </div>
+</template>
