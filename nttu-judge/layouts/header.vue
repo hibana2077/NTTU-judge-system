@@ -1,23 +1,53 @@
 <!--
- * @Author: hibana2077 hibana2077@gmaill.com
- * @Date: 2023-05-02 14:44:41
- * @LastEditors: hibana2077 hibana2077@gmaill.com
- * @LastEditTime: 2023-05-02 16:14:50
- * @FilePath: /NTTU-new-gen-judge-system/nttu-judge/layouts/Header.vue
+ * @Author: hibana2077 hibana2077@gmail.com
+ * @Date: 2023-05-02 21:36:33
+ * @LastEditors: hibana2077 hibana2077@gmail.com
+ * @LastEditTime: 2023-05-02 22:28:18
+ * @FilePath: \NTTU-new-gen-judge-system\nttu-judge\layouts\header.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-    <div style="background-color: white;">
-      <el-container>
-        <el-header>
-            <el-text class="flex justify-center text-4xl font-bold text-gray-700">
-                NTTU OJ
-            </el-text>
-            <div style="display: flex; text-align: center;">
-                <el-avatar>H</el-avatar>
-            </div>
-        </el-header>
-      </el-container>
-      <slot />
-    </div>
+  <el-menu
+    :default-active="activeIndex"
+    class="el-menu-demo"
+    mode="horizontal"
+    :ellipsis="false"
+    @select="handleSelect"
+  >
+    <el-menu-item index="0" class="font-semibold">NTTUOJ</el-menu-item>
+    <div class="flex-grow" />
+    <el-menu-item index="1">
+      <el-icon color="#409EFC" class="no-inherit">
+        <Share />
+      </el-icon>
+      Login</el-menu-item>
+    <el-sub-menu index="2">
+      <template #title>Workspace</template>
+      <el-menu-item index="2-1">item one</el-menu-item>
+      <el-menu-item index="2-2">item two</el-menu-item>
+      <el-menu-item index="2-3">item three</el-menu-item>
+      <el-sub-menu index="2-4">
+        <template #title>item four</template>
+        <el-menu-item index="2-4-1">item one</el-menu-item>
+        <el-menu-item index="2-4-2">item two</el-menu-item>
+        <el-menu-item index="2-4-3">item three</el-menu-item>
+      </el-sub-menu>
+    </el-sub-menu>
+  </el-menu>
+  <slot />
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const activeIndex = ref('1')
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+</script>
+
+<style>
+.flex-grow {
+  flex-grow: 1;
+}
+</style>
