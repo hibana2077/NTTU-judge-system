@@ -2,7 +2,7 @@
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-05-02 21:36:33
  * @LastEditors: hibana2077 hibana2077@gmaill.com
- * @LastEditTime: 2023-05-03 12:43:25
+ * @LastEditTime: 2023-05-03 13:07:31
  * @FilePath: \NTTU-new-gen-judge-system\nttu-judge\layouts\header.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -26,7 +26,9 @@
       <p v-if="islogin">
         <NuxtLink :to="`/users/${username}`">{{ username }}</NuxtLink>
       </p>
-      <p v-else>Sign in/up</p>
+      <p v-else>
+        <NuxtLink to="/login">Sign in</NuxtLink>
+      </p>
     </el-menu-item>
     <el-sub-menu index="2">
       <template #title>
@@ -51,7 +53,8 @@
         <el-icon color="#409EFC" class="no-inherit">
           <Notebook />
         </el-icon>
-        Notebook
+        <NuxtLink v-if="islogin" :to="`/notebook/${username}`">Notebook</NuxtLink>
+        <NuxtLink v-else to="/login">Notebook</NuxtLink>
       </el-menu-item>
       <el-sub-menu index="2-4">
         <template #title>
