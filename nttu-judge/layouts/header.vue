@@ -2,7 +2,7 @@
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-05-02 21:36:33
  * @LastEditors: hibana2077 hibana2077@gmail.com
- * @LastEditTime: 2023-05-03 08:33:13
+ * @LastEditTime: 2023-05-03 09:26:29
  * @FilePath: \NTTU-new-gen-judge-system\nttu-judge\layouts\header.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -20,7 +20,11 @@
       <el-icon color="#409EFC" class="no-inherit">
         <User />
       </el-icon>
-      Login</el-menu-item>
+      <p v-if="islogin">
+        <NuxtLink :to="`/users/${username}`">{{ username }}</NuxtLink>
+      </p>
+      <p v-else>Sign in</p>
+    </el-menu-item>
     <el-sub-menu index="2">
       <template #title>
         <el-icon color="#409EFC" class="no-inherit">
@@ -28,20 +32,35 @@
         </el-icon>
         Menu
       </template>
-      <el-menu-item index="2-1">item one</el-menu-item>
-      <el-menu-item index="2-2">item two</el-menu-item>
-      <el-menu-item index="2-3">item three</el-menu-item>
-    </el-sub-menu>
-    <el-sub-menu index="3">
-      <template #title>
+      <el-menu-item index="2-1">
         <el-icon color="#409EFC" class="no-inherit">
-          <Trophy />
+          <Setting />
         </el-icon>
-        contest
-      </template>
-      <el-menu-item v-for="item in 10" :key="item" :index="`3-${item}`">
-        item {{ item }}
+        Settings
       </el-menu-item>
+      <el-menu-item index="2-2">
+        <el-icon color="#409EFC" class="no-inherit">
+          <ChatDotRound />
+        </el-icon>
+        Forum
+      </el-menu-item>
+      <el-menu-item index="2-3">
+        <el-icon color="#409EFC" class="no-inherit">
+          <Notebook />
+        </el-icon>
+        Notebook
+      </el-menu-item>
+      <el-sub-menu index="2-4">
+        <template #title>
+          <el-icon color="#409EFC" class="no-inherit">
+            <Trophy />
+          </el-icon>
+          contest
+        </template>
+        <el-menu-item v-for="item in 10" :key="item" :index="`2-4-${item}`">
+          item {{ item }}
+        </el-menu-item>
+      </el-sub-menu>
     </el-sub-menu>
   </el-menu>
   <slot />
@@ -62,6 +81,8 @@ const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+const islogin = ref(true) //TODO: change this to vue state management
+const username = ref('hibana2077') //TODO: change this to vue state management
 </script>
 
 <style>
