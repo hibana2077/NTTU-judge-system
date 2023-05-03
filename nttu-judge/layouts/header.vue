@@ -2,7 +2,7 @@
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-05-02 21:36:33
  * @LastEditors: hibana2077 hibana2077@gmail.com
- * @LastEditTime: 2023-05-03 00:17:11
+ * @LastEditTime: 2023-05-03 08:33:13
  * @FilePath: \NTTU-new-gen-judge-system\nttu-judge\layouts\header.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -22,16 +22,26 @@
       </el-icon>
       Login</el-menu-item>
     <el-sub-menu index="2">
-      <template #title>Workspace</template>
+      <template #title>
+        <el-icon color="#409EFC" class="no-inherit">
+          <Menu />
+        </el-icon>
+        Menu
+      </template>
       <el-menu-item index="2-1">item one</el-menu-item>
       <el-menu-item index="2-2">item two</el-menu-item>
       <el-menu-item index="2-3">item three</el-menu-item>
-      <el-sub-menu index="2-4">
-        <template #title>item four</template>
-        <el-menu-item index="2-4-1">item one</el-menu-item>
-        <el-menu-item index="2-4-2">item two</el-menu-item>
-        <el-menu-item index="2-4-3">item three</el-menu-item>
-      </el-sub-menu>
+    </el-sub-menu>
+    <el-sub-menu index="3">
+      <template #title>
+        <el-icon color="#409EFC" class="no-inherit">
+          <Trophy />
+        </el-icon>
+        contest
+      </template>
+      <el-menu-item v-for="item in 10" :key="item" :index="`3-${item}`">
+        item {{ item }}
+      </el-menu-item>
     </el-sub-menu>
   </el-menu>
   <slot />
