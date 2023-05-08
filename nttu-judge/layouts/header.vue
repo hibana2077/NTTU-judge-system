@@ -2,10 +2,35 @@
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-05-02 21:36:33
  * @LastEditors: hibana2077 hibana2077@gmaill.com
- * @LastEditTime: 2023-05-03 13:07:31
+ * @LastEditTime: 2023-05-03 15:11:22
  * @FilePath: \NTTU-new-gen-judge-system\nttu-judge\layouts\header.vue
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
+<script lang="ts" setup>
+import { ref } from 'vue'
+//add this if you want to use icons
+import * as ElementPlusIcons from '@element-plus/icons-vue'
+
+//add this if you want to use icons
+const nuxtApp = useNuxtApp()
+for (const [key, component] of Object.entries(ElementPlusIcons)) {
+  nuxtApp.vueApp.component(key, component)
+}
+//to this
+const activeIndex = ref('1')
+const handleSelect = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
+}
+const islogin = ref(true) //TODO: change this to vue state management
+const username = ref('hibana2077') //TODO: change this to vue state management
+</script>
+
+<style>
+.flex-grow {
+  flex-grow: 1;
+}
+</style>
+
 <template>
   <el-menu
     :default-active="activeIndex"
@@ -49,21 +74,14 @@
         </el-icon>
         Forum
       </el-menu-item>
-      <el-menu-item index="2-3">
-        <el-icon color="#409EFC" class="no-inherit">
-          <Notebook />
-        </el-icon>
-        <NuxtLink v-if="islogin" :to="`/notebook/${username}`">Notebook</NuxtLink>
-        <NuxtLink v-else to="/login">Notebook</NuxtLink>
-      </el-menu-item>
-      <el-sub-menu index="2-4">
+      <el-sub-menu index="2-3">
         <template #title>
           <el-icon color="#409EFC" class="no-inherit">
             <Trophy />
           </el-icon>
           contest
         </template>
-        <el-menu-item v-for="item in 10" :key="item" :index="`2-4-${item}`">
+        <el-menu-item v-for="item in 10" :key="item" :index="`2-3-${item}`">
           item {{ item }}
         </el-menu-item>
       </el-sub-menu>
@@ -71,27 +89,3 @@
   </el-menu>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue'
-//add this if you want to use icons
-import * as ElementPlusIcons from '@element-plus/icons-vue'
-
-//add this if you want to use icons
-const nuxtApp = useNuxtApp()
-for (const [key, component] of Object.entries(ElementPlusIcons)) {
-  nuxtApp.vueApp.component(key, component)
-}
-//to this
-const activeIndex = ref('1')
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const islogin = ref(true) //TODO: change this to vue state management
-const username = ref('hibana2077') //TODO: change this to vue state management
-</script>
-
-<style>
-.flex-grow {
-  flex-grow: 1;
-}
-</style>
