@@ -7,7 +7,8 @@
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 <template>
-  <el-card class="box-card" style="margin-top: 1% ; margin-left: 5%; margin-right: 5%; margin-bottom: 2%;">
+  <div class="flex">
+    <el-card class="box-card" style="margin-top: 1% ; margin-left: 5%; margin-right: 5%; margin-bottom: 2%;">
     <template #header>
       <div class="card-header">
         <span class="font-bold">Billboard</span>
@@ -16,6 +17,7 @@
     </template>
     <div v-for="o in 4" :key="o" class="text item">{{ 'List item ' + o }}</div>
   </el-card>
+  </div>
 </template>
 
 <style>
