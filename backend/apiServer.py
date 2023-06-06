@@ -55,7 +55,7 @@ os.chdir("runtime")
                 
 #test
 app = FastAPI()
-mogodb_client = pymongo.MongoClient("mongodb://localhost:27017/")#先放在本地 之後看有沒有要放到雲端去
+mogodb_client = pymongo.MongoClient("mongodb://mongo:27017/")#先放在本地 之後看有沒有要放到雲端去 -> 最後用 docker 的 link 連接 所以要改成 mongodb://mongo:27017/
 
 @app.get("/")
 async def read_root():
@@ -63,6 +63,11 @@ async def read_root():
 
 @app.get("/doc/support")
 async def read_support():
+    '''
+    @description: 支援的語言
+    @param {*}
+    @return: dict
+    '''
     return {"support": "python3, node, rust, c, cpp"}
 
 #預留一個接口給前端做登入
@@ -98,4 +103,4 @@ def login_data():
 
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)#run on 8000 port
