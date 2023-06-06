@@ -9,6 +9,9 @@ Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查�
 from fastapi import FastAPI
 from pydantic import BaseModel
 from runner import Judge
+import time
+import psutil
+import json
 import subprocess
 import sys
 import uvicorn
@@ -48,6 +51,21 @@ def create_JWT_token():
     '''
     random_str = os.urandom(24)
     return base64.b64encode(random_str).decode("utf-8")
+
+def init_DB(db:str,admin:str,admin_password:str,sessions:list):
+    '''
+    @description: 初始化資料庫
+    @param {db} -> mongodb client
+    @param {admin} -> admin username
+    @param {admin_password} -> admin password
+    @return: None
+    '''
+    db_client = pymongo.MongoClient(db)
+    #create user collection
+    user_collection = db_client["user"]
+    op = user_collection.insert_one({"username":admin,"password":admin_password})
+    print(op)
+
 
 #---------------------function-----------------<
 
