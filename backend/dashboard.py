@@ -23,10 +23,6 @@ def main_page():
     st.title("NTTU Judge System Dashboard")
     if st.button("Refresh"):
         st.experimental_rerun()
-    # col1, col2, col3 = st.columns(3)
-    # col1.metric("CPU use", "70 °F", "1.2 °F")
-    # col2.metric("Wind", "9 mph", "-8%")
-    # col3.metric("Humidity", "86%", "4%")
     cpu , memory, disk = st.tabs(["CPU", "Memory", "Disk"])
     with cpu:
         col1 ,  col2, col3 = st.columns(3)
