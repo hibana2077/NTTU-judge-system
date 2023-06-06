@@ -31,7 +31,7 @@ class session(BaseModel):
     end_time: str
 
 class Sumbit(BaseModel):
-    id: str #(user id + problem id + session id + time)Hash -> 用來當檔案名稱
+    id: str #(user id + problem id + session id + time)Base56 -> 用來當檔案名稱
     question_id: str #question id
     code: str #code
     language: str #language -> python3, node, ruby, c, cpp
@@ -49,7 +49,10 @@ def create_JWT_token():
     random_str = os.urandom(24)
     return base64.b64encode(random_str).decode("utf-8")
 
-#create a directory to store the runtimes
+#---------------------function-----------------<
+
+#---------------------main--------------------->
+#create a directory to store the runtimes 讓環境盡量乾淨
 os.mkdir("runtime")
 os.chdir("runtime")
                 
@@ -101,6 +104,11 @@ def login_data():
     '''
     pass
 
+#---------------------main---------------------<
+
+#---------------------server------------------->
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)#run on 8000 port
+
+#---------------------server-------------------<
