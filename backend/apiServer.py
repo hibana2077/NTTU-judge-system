@@ -52,7 +52,7 @@ def create_JWT_token():
     random_str = os.urandom(24)
     return base64.b64encode(random_str).decode("utf-8")
 
-def init_DB(db:str,admin:str,admin_password:str,sessions:list):
+def init_DB(db_loc:str,admin:str,admin_password:str,sessions:dict):
     '''
     @description: 初始化資料庫
     @param {db} -> mongodb client
@@ -60,11 +60,14 @@ def init_DB(db:str,admin:str,admin_password:str,sessions:list):
     @param {admin_password} -> admin password
     @return: None
     '''
-    db_client = pymongo.MongoClient(db)
+    db_client = pymongo.MongoClient(db_loc)
     #create user collection
-    user_collection = db_client["user"]
-    op = user_collection.insert_one({"username":admin,"password":admin_password})
-    print(op)
+    db = db_client["NTTU_Judge_System"]
+    user_collection = db["user"]
+    user_collection.insert_one({"username": admin, "password": admin_password})
+    #create session collection
+    session_collection = db["session"]
+    session_collection.insert_many(sessions)
 
 
 #---------------------function-----------------<
