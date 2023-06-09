@@ -19,6 +19,10 @@ import pymongo
 import os
 import base64
 
+#---------------------const--------------------->
+MONGO_DB_LOC = "mongodb://mongo:27017/"
+#---------------------const---------------------<
+
 #---------------------model--------------------->
 
 class User(BaseModel):
@@ -43,6 +47,19 @@ class Sumbit(BaseModel):
 
 #---------------------function----------------->
 
+def check_token_state(token:str):
+    '''
+    @description: 檢查token的狀態是否合法
+    @param {token} -> token
+    @return: dict{state:bool, error_code:int}
+    '''
+    db_client = pymongo.MongoClient(MONGO_DB_LOC)
+    db = db_client["NTTU_Judge_System"]
+    session_collection = db["session"]
+
+    #取得session
+    session = session_collection.find_one({"token":token})
+
 def create_JWT_token():
     '''
     @description: 建立JWT token
@@ -58,6 +75,7 @@ def init_DB(db_loc:str,admin:str,admin_password:str,sessions:dict):
     @param {db} -> mongodb client
     @param {admin} -> admin username
     @param {admin_password} -> admin password
+    @param {sessions} -> session dict{"token":token,"user_id":user_id,"expire_time":expire_time}
     @return: None
     '''
     db_client = pymongo.MongoClient(db_loc)
@@ -67,7 +85,7 @@ def init_DB(db_loc:str,admin:str,admin_password:str,sessions:dict):
     user_collection.insert_one({"username": admin, "password": admin_password})
     #create session collection
     session_collection = db["session"]
-    session_collection.insert_many(sessions)
+    session_collection.insert_one(sessions)
 
 
 #---------------------function-----------------<
@@ -115,6 +133,7 @@ async def vue_login(user: User):
         if user_data["password"] == user.password:
             #正確後建立JWT token 存放在session跟DB
             token = create_JWT_token()
+            expire_time = time.time() + 60 * 60 * 24 * 7 #一週後過期
             
         else:
             return {"status": "fail", "message": "password incorrect"}
