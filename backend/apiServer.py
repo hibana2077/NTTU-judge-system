@@ -85,14 +85,18 @@ mogodb_client = pymongo.MongoClient("mongodb://mongo:27017/")#先放在本地 �
 async def read_root():
     return {"System": "NTTU Online Judge System"}
 
+@app.get("/doc")
+async def read_doc():
+    return {"doc": "This is a doc"}
+
 @app.get("/doc/support")
 async def read_support():
     '''
     @description: 支援的語言
     @param {*}
-    @return: dict
+    @return: dict{support: list}
     '''
-    return {"support": "python3, node, rust, c, cpp"}
+    return {"support": ["python3", "node", "ruby", "c", "cpp"]}
 
 #預留一個接口給前端做登入
 @app.post("/api/vue_login")
@@ -117,6 +121,11 @@ async def vue_login(user: User):
 
 @app.post("/api/submission")
 async def submission(submit: Sumbit):
+    '''
+    @description: 提交程式碼並且執行評判
+    @param {submit} -> id, problem_id, code, language
+    @return: dict
+    '''
     return {'state':'building'}
 
 #---------------------main---------------------<
