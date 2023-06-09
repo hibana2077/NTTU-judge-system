@@ -35,7 +35,7 @@ class session(BaseModel):
 
 class Sumbit(BaseModel):
     id: str #(user id + problem id + session id + time)Base56 -> 用來當檔案名稱
-    question_id: str #question id
+    problem_id: str #problem id
     code: str #code
     language: str #language -> python3, node, ruby, c, cpp
 
@@ -115,15 +115,9 @@ async def vue_login(user: User):
         else:
             return {"status": "fail", "message": "password incorrect"}
 
-#client -> server
-@app.get("/api/login_data")
-def login_data():
-    '''
-    @description: 取得登入資料
-    @param {*}
-    @return: dict
-    '''
-    pass
+@app.post("/api/submission")
+async def submission(submit: Sumbit):
+    return {'state':'building'}
 
 #---------------------main---------------------<
 
