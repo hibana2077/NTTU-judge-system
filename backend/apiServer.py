@@ -59,6 +59,16 @@ def check_token_state(token:str):
 
     #取得session
     session = session_collection.find_one({"token":token})
+    if session == None:
+        return {"state":False,"error_code":1}
+    #檢查session是否過期
+    if session["expire_time"] < time.time():
+        return {"state":False,"error_code":3}
+    
+    #關閉資料庫連接(不然會爆炸)
+    db_client.close()
+
+    return {"state":True,"error_code":0}
 
 def create_JWT_token():
     '''
@@ -116,7 +126,7 @@ async def read_support():
     '''
     return {"support": ["python3", "node", "ruby", "c", "cpp"]}
 
-#預留一個接口給前端做登入
+#預留一個接口給前端做登入->登入後會回傳一個JWT token
 @app.post("/api/vue_login")
 async def vue_login(user: User):
     '''
