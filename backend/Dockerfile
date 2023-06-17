@@ -1,4 +1,6 @@
-FROM ubuntu:23.04
+FROM ubuntu:22.04
+
+SHELL ["/bin/bash", "-c"]
 
 WORKDIR /app
 
@@ -14,4 +16,6 @@ RUN source "$HOME/.cargo/env"
 EXPOSE 8000
 EXPOSE 8080
 
-CMD ["python3", "manage.py", "&&", "streamlit", "run", "app.py", "--server.port", "8080"]
+CMD ["python3", "apiServer.py"]
+# streamlit run dashboard.py --server.port 8080
+# CMD ["sh", "-c", "pwd; tail -f /dev/null"]
