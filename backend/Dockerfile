@@ -17,5 +17,5 @@ EXPOSE 8000
 EXPOSE 8080
 
 CMD ["python3", "apiServer.py"]
-# streamlit run dashboard.py --server.port 8080
+# streamlit run dashboard.py --server.port 8080 --server.address 0.0.0.0
 # CMD ["sh", "-c", "pwd; tail -f /dev/null"]
