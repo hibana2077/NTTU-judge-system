@@ -2,11 +2,12 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:13:39
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-06-17 14:09:06
+LastEditTime: 2023-06-17 15:04:06
 FilePath: /NTTU-new-gen-judge-system/backend/apiServer.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
 from fastapi import FastAPI
+from fastapi.responses import JSONResponse,HTMLResponse
 from pydantic import BaseModel
 from runner import Judge
 import time
@@ -129,6 +130,16 @@ async def read_support():
     '''
     return {"support": ["python3", "node", "ruby", "c", "cpp"]}
 
+@app.get("/doc/judge_mode")
+async def read_judge_mode():
+    '''
+    @description: 支援的judge mode
+    @param {*}
+    @return: dict{judge_mode: list}
+    '''
+    with open("../page/judge_mode.html", "r") as f:
+        judge_mode = f.read()
+    return HTMLResponse(content=judge_mode, status_code=200)
 
 @app.get("/api/supported_details")
 async def read_supported_details():

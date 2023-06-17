@@ -31,10 +31,10 @@ while [ "$1" != "" ]; do
     shift
 done
 
-/usr/bin/time -v python3 $code < $input > temp.txt 2> time_output.txt
+/usr/bin/time -v python3 $code < $input > $temp_output 2> $time_output
 
 if [ "$mode" = "1" ]; then
-    diff -B -w "temp.txt" $ans > "diff.txt"
+    diff -B -w -i $temp_output $output > $diff_output
 else
     diff -i "temp.txt" $ans > "diff.txt"
 fi
