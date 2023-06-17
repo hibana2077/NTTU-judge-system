@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:13:39
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-06-17 14:00:26
+LastEditTime: 2023-06-17 14:09:06
 FilePath: /NTTU-new-gen-judge-system/backend/apiServer.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -20,16 +20,10 @@ import pymongo
 import os
 import base64
 
-#---------------------argparse----------------->
-parser = argparse.ArgumentParser(description="NTTU Online Judge System")
-parser.add_argument("-ap", "--admin_password", type=str, default="admin", help="admin password")
-parser.add_argument("-a", "--admin", type=str, default="admin", help="admin username")
-parser.add_argument("-d", "--db_loc", type=str, default="mongodb://mongo:27017/", help="mongodb location")
-
 #---------------------const--------------------->
-ADMIN = parser.parse_args().admin
-ADMIN_PASSWORD = parser.parse_args().admin_password
-MONGO_DB_LOC = parser.parse_args().db_loc
+MONGO_DB_LOC = os.getenv("MONGO_DB_LOC")
+ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
 #---------------------const---------------------<
 
 #---------------------model--------------------->
