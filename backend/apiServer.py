@@ -27,6 +27,8 @@ parser.add_argument("-a", "--admin", type=str, default="admin", help="admin user
 parser.add_argument("-d", "--db_loc", type=str, default="mongodb://mongo:27017/", help="mongodb location")
 
 #---------------------const--------------------->
+ADMIN = parser.parse_args().admin
+ADMIN_PASSWORD = parser.parse_args().admin_password
 MONGO_DB_LOC = parser.parse_args().db_loc
 #---------------------const---------------------<
 
