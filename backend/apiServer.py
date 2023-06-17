@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:13:39
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-06-05 11:41:10
+LastEditTime: 2023-06-17 13:50:20
 FilePath: /NTTU-new-gen-judge-system/backend/apiServer.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -125,6 +125,23 @@ async def read_support():
     @return: dict{support: list}
     '''
     return {"support": ["python3", "node", "ruby", "c", "cpp"]}
+
+
+@app.get("/api/supported_details")
+async def read_supported_details():
+    '''
+    @description: 支援的語言詳細資料
+    @param {*}
+    @return: text
+    '''
+    #run shell script to get the details txt
+    subprocess.run(["bash", "./envcheck.sh"])
+    #read the details txt
+    with open("envcheck.txt", "r") as f:
+        details = f.read()
+    #remove the details txt
+    os.remove("envcheck.txt")
+    return {"details": details}
 
 #預留一個接口給前端做登入->登入後會回傳一個JWT token
 @app.post("/api/vue_login")
