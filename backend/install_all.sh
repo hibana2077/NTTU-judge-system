@@ -11,7 +11,4 @@ apt-get install -y nodejs
 echo "install python3"
 apt-get install -y python3
 apt-get install -y python3-pip
-echo "install rust"
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-source "$HOME/.cargo/env"
 echo "install done!"
