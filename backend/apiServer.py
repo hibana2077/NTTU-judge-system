@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2023-01-16 22:13:39
 LastEditors: hibana2077 hibana2077@gmaill.com
-LastEditTime: 2023-06-17 13:50:20
+LastEditTime: 2023-06-17 13:57:21
 FilePath: /NTTU-new-gen-judge-system/backend/apiServer.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -135,7 +135,7 @@ async def read_supported_details():
     @return: text
     '''
     #run shell script to get the details txt
-    subprocess.run(["bash", "./envcheck.sh"])
+    subprocess.run(["bash", "../envcheck.sh"])
     #read the details txt
     with open("envcheck.txt", "r") as f:
         details = f.read()
