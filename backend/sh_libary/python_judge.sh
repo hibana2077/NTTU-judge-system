@@ -33,8 +33,7 @@ done
 
 /usr/bin/time -v python3 $code < $input > $temp_output 2> $time_output
 
-if [ "$mode" = "1" ]; then
-    diff -B -w -i $temp_output $output > $diff_output
-else
-    diff -i "temp.txt" $ans > "diff.txt"
-fi
+diff $mode $temp_output $ans > $diff_output
+
+#read time outputb
+while IFS= read -r line
