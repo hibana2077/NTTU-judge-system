@@ -35,5 +35,31 @@ done
 
 diff $mode $temp_output $ans > $diff_output
 
+#out.yaml
+echo "judge_result:" > $output
+echo "  uid: $uid" >> $output
+echo "  time_info:" >> $output
+
 #read time outputb
 while IFS= read -r line
+do
+    if [[ $line == *"Elapsed (wall clock) time (h:mm:ss or m:ss):"* ]]; then
+        temp_var=$(echo $line | cut -d ":" -f 2)
+        echo "    wall_clock_time: $temp_var" >> $output
+    fi
+    if [[ $line == *"Maximum resident set size (kbytes):"* ]]; then
+        temp_var=$(echo $line | cut -d ":" -f 2)
+        echo "    max_memory: $temp_var" >> $output
+    fi
+    if [[ $line == *"User time (seconds):"* ]]; then
+        temp_var=$(echo $line | cut -d ":" -f 2)
+        echo "    user_time: $temp_var" >> $output
+    fi
+    if [[ $line == *"System time (seconds):"* ]]; then
+        temp_var=$(echo $line | cut -d ":" -f 2)
+        echo "    system_time: $temp_var" >> $output
+    fi
+done < "$time_output"
+
+#read diff output
+echo "  diff_info:" >> $output
