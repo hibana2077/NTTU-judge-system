@@ -1,6 +1,12 @@
 #!/bin/bash
 output_file="envcheck.txt"
 
+echo "Checking output file ($output_file) existence..."
+if [ -f $output_file ]; then
+    echo "Output file ($output_file) exists. Removing it..."
+    rm $output_file
+fi
+
 echo "Checking C compiler (gcc)..."
 if command -v gcc >/dev/null 2>&1; then
     echo "C compiler (gcc) is installed."
@@ -45,3 +51,24 @@ if command -v rustc >/dev/null 2>&1; then
 else
     echo "Rust is not installed."
 fi
+
+echo "Checking Go..."
+if command -v go >/dev/null 2>&1; then
+    echo "Go is installed."
+    go version
+    echo "go : $(go version)" >> $output_file
+else
+    echo "Go is not installed."
+fi
+
+echo "Checking Ruby..."
+if command -v ruby >/dev/null 2>&1; then
+    echo "Ruby is installed."
+    ruby --version
+    echo "ruby : $(ruby --version)" >> $output_file
+else
+    echo "Ruby is not installed."
+fi
+
+echo "Check done. See $output_file for details."
+```
