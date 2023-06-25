@@ -1,8 +1,8 @@
 
 echo "regulate apt update"
 apt-get update
-echo "install vim curl git wget"
-apt-get install -y vim curl git wget
+echo "install vim curl git wget snap"
+apt-get install -y vim curl git wget snapd
 echo "install c compiler"
 apt-get install -y gcc
 echo "install c++ compiler"
