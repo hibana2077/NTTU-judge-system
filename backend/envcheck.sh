@@ -71,4 +71,3 @@ else
 fi
 
 echo "Check done. See $output_file for details."
-```
