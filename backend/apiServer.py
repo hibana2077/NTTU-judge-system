@@ -22,6 +22,7 @@ import os
 import base64
 
 #---------------------const--------------------->
+#this will be set by docker-compose
 MONGO_DB_LOC = os.getenv("MONGO_DB_LOC")
 ADMIN_USERNAME = os.getenv("ADMIN_USERNAME")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD")
