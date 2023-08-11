@@ -1,30 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            color: navy;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>命令行參數</h1>
-    <ul>
-        <li><strong>-i 或 --ignore-case</strong>：忽略大小写差异。</li>
-        <li><strong>-w 或 --ignore-all-space</strong>：忽略所有的空格字符差异。</li>
-        <li><strong>-B 或 --ignore-blank-lines</strong>：忽略空行。</li>
-        <li><strong>-b 或 --ignore-space-change</strong>：忽略改变数量的空格。</li>
-        <li><strong>-E 或 --ignore-tab-expansion</strong>：忽略由制表符引起的差异。</li>
-    </ul>
+<body class="bg-dark text-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-primary text-center">
+                    <a href="https://man7.org/linux/man-pages/man1/diff.1.html" target="_blank">
+                        命令行參數
+                    </a>
+                </h1>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><strong>-i 或 --ignore-case</strong>：忽略大小写差异。</li>
+                    <li class="mb-2"><strong>-w 或 --ignore-all-space</strong>：忽略所有的空格字符差异。</li>
+                    <li class="mb-2"><strong>-B 或 --ignore-blank-lines</strong>：忽略空行。</li>
+                    <li class="mb-2"><strong>-b 或 --ignore-space-change</strong>：忽略改变数量的空格。</li>
+                    <li class="mb-2"><strong>-E 或 --ignore-tab-expansion</strong>：忽略由制表符引起的差异。</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
