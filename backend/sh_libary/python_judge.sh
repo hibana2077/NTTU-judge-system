@@ -1,4 +1,12 @@
 #!/bin/bash
+###
+ # @Author: hibana2077 hibana2077@gmaill.com
+ # @Date: 2023-06-17 16:27:30
+ # @LastEditors: hibana2077 hibana2077@gmaill.com
+ # @LastEditTime: 2023-08-20 20:15:00
+ # @FilePath: /NTTU-new-gen-judge-system/backend/sh_libary/python_judge.sh
+ # @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+### 
 
 random=$RANDOM
 time_output="time_output_$random.txt"
@@ -40,7 +48,7 @@ echo "judge_result:" > $output
 echo "  uid: $uid" >> $output
 echo "  time_info:" >> $output
 
-#read time outputb
+#read time output
 while IFS= read -r line
 do
     if [[ $line == *"Elapsed (wall clock) time (h:mm:ss or m:ss):"* ]]; then
@@ -63,3 +71,12 @@ done < "$time_output"
 
 #read diff output
 echo "  diff_info:" >> $output
+
+while IFS= read -r line
+do
+    if [[ $line == *"differ"* ]]; then
+        echo "    diff: 1" >> $output
+    else
+        echo "    diff: 0" >> $output
+    fi
+done < "$diff_output"
