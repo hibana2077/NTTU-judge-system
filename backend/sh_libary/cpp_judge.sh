@@ -57,6 +57,7 @@ fi
 # Compile the code
 g++ $code -o $code.out
 
+# Run the code
 /usr/bin/time -v ./$code.out < $input > $temp_output 2> $time_output
 
 diff $mode $temp_output $ans > $diff_output
