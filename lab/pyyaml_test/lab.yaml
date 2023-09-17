@@ -1,0 +1,22 @@
+judge_result:
+  uid: 123
+  time_info:
+    user_time:  0.01
+    system_time:  0.00
+    wall_clock_time: 0:00.02
+    max_memory:  7348
+  diff_info:
+    diff_result:
+      has_diff: true
+      diff_content:
+        1,2c1,2
+
+        < 11
+
+        < 15
+
+        ---
+
+        > 12
+
+        > 13

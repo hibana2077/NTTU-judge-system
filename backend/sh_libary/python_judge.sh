@@ -2,7 +2,7 @@
 
 # Description: This script is used to judge python code
 # Input: --code <code_path> --in <input_path> --ans <ans_path> --out <output_path> --mode <mode> --uid <uid>
-# Run sh: sh
+# Run sh: sh python_judge.sh --code <code_path> --in <input_path> --ans <ans_path> --out <output_path> --mode <mode> --uid <uid>
 
 random=$RANDOM #random number for temp file
 time_output="time_output_$random.txt"
@@ -68,7 +68,7 @@ echo "  time_info:" >> $output
 while IFS= read -r line; do
   case "$line" in
     *"Elapsed (wall clock) time (h:mm:ss or m:ss):"*)
-      temp_var=$(echo $line | cut -d ":" -f 2-)
+      temp_var=$(echo $line | sed -n 's/.*h:mm:ss or m:ss): //p')
       echo "    wall_clock_time: $temp_var" >> $output
       ;;
     *"Maximum resident set size (kbytes):"*)
@@ -89,10 +89,15 @@ done < "$time_output"
 #read diff output
 echo "  diff_info:" >> $output
 
-if grep -q 'differ' "$diff_output"; then
-    echo "    diff: 1" >> $output
+#if not none file -> has diff
+if [ -s $diff_output ]; then
+  echo "    has_diff: true" >> $output
+  echo "    diff_content: " >> $output
+  while IFS= read -r line; do
+    echo "        $line\n" >> $output
+  done < "$diff_output"
 else
-    echo "    diff: 0" >> $output
+  echo "    has_diff: false" >> $output
 fi
 
 # Clean up the temporary files
