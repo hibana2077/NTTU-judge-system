@@ -2,11 +2,13 @@
 
 # Description: This script is used to judge python code
 # Input: --code <code_path> --in <input_path> --ans <ans_path> --out <output_path> --mode <mode> --uid <uid>
+# Run sh: sh
 
 random=$RANDOM #random number for temp file
 time_output="time_output_$random.txt"
 temp_output="temp_$random.txt"
 diff_output="diff_$random.txt"
+cpp_executable="cpp_executable_$random"
 
 # Initializing flags to check if necessary parameters are provided
 code_flag=0
@@ -55,10 +57,9 @@ if [ $code_flag -eq 0 ] || [ $in_flag -eq 0 ] || [ $ans_flag -eq 0 ] || [ $out_f
 fi
 
 # Compile the code
-g++ $code -o $code.out
+g++ $code -o $cpp_executable
 
-# Run the code
-/usr/bin/time -v ./$code.out < $input > $temp_output 2> $time_output
+/usr/bin/time -v ./$cpp_executable < $input > $temp_output 2> $time_output
 
 diff $mode $temp_output $ans > $diff_output
 
@@ -68,24 +69,25 @@ echo "  uid: $uid" >> $output
 echo "  time_info:" >> $output
 
 #read time output
-while IFS= read -r line
-do
-    if [[ $line == *"Elapsed (wall clock) time (h:mm:ss or m:ss):"* ]]; then
-        temp_var=$(echo $line | cut -d ":" -f 2)
-        echo "    wall_clock_time: $temp_var" >> $output
-    fi
-    if [[ $line == *"Maximum resident set size (kbytes):"* ]]; then
-        temp_var=$(echo $line | cut -d ":" -f 2)
-        echo "    max_memory: $temp_var" >> $output
-    fi
-    if [[ $line == *"User time (seconds):"* ]]; then
-        temp_var=$(echo $line | cut -d ":" -f 2)
-        echo "    user_time: $temp_var" >> $output
-    fi
-    if [[ $line == *"System time (seconds):"* ]]; then
-        temp_var=$(echo $line | cut -d ":" -f 2)
-        echo "    system_time: $temp_var" >> $output
-    fi
+while IFS= read -r line; do
+  case "$line" in
+    *"Elapsed (wall clock) time (h:mm:ss or m:ss):"*)
+      temp_var=$(echo $line | cut -d ":" -f 2-)
+      echo "    wall_clock_time: $temp_var" >> $output
+      ;;
+    *"Maximum resident set size (kbytes):"*)
+      temp_var=$(echo $line | cut -d ":" -f 2-)
+      echo "    max_memory: $temp_var" >> $output
+      ;;
+    *"User time (seconds):"*)
+      temp_var=$(echo $line | cut -d ":" -f 2-)
+      echo "    user_time: $temp_var" >> $output
+      ;;
+    *"System time (seconds):"*)
+      temp_var=$(echo $line | cut -d ":" -f 2-)
+      echo "    system_time: $temp_var" >> $output
+      ;;
+  esac
 done < "$time_output"
 
 #read diff output
