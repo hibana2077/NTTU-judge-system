@@ -130,16 +130,20 @@ const toast = useToast()
         </ULink>
         <div class="flex-grow"></div>
         <div class="flex items-center space-x-2">
-          <ULink to="/docs" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
-            Docs
-          </ULink>
-          <ULink to="/components" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
+            <ULink to="/docs" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white flex items-center">
+                <UIcon name="i-heroicons-book-open-20-solid" class="mr-2" />
+                Docs
+            </ULink>
+          <ULink to="/components" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white flex items-center">
+            <UIcon name="i-heroicons-cube-20-solid" class="mr-2" />
             Problems
           </ULink>
-          <ULink to="/examples" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
+          <ULink to="/examples" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white flex items-center">
+            <UIcon name="i-heroicons-trophy-20-solid" class="mr-2" />
             Contests
           </ULink>
-          <ULink to="/blog" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
+          <ULink to="/blog" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white flex items-center">
+            <UIcon name="i-heroicons-newspaper-20-solid" class="mr-2" />
             Status
           </ULink>
           <ULink to="login" class="px-3 py-2 rounded-3xl bg-green-700 text-white hover:bg-gray-700 hover:text-white">

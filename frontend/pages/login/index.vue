@@ -8,7 +8,7 @@
             <h1 class="text-4xl font-bold text-white mb-4">Login</h1>
             <UInput v-model="username" placeholder="Username" class="mb-4" />
             <UInput v-model="password" placeholder="Password" class="mb-4" type="password" />
-            <UButton color="primary" class="mb-4 rounded-3xl text-white" @click="login">Login</UButton>
+            <UButton color="primary" class="mb-4 text-white" :ui="{ rounded: 'rounded-full' }"  @click="login">Login</UButton>
         </UCard>
     </div>
 </template>
