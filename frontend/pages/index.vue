@@ -107,6 +107,10 @@ const items = (row) => [
 const show_detail = ref(false)
 const show_detail_id = ref(0)
 // table of contents function end
+
+//toast function
+const toast = useToast()
+//toast function end
 </script>
 
 <template>
@@ -126,19 +130,19 @@ const show_detail_id = ref(0)
         </ULink>
         <div class="flex-grow"></div>
         <div class="flex items-center space-x-2">
-          <ULink href="/docs" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
+          <ULink to="/docs" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
             Docs
           </ULink>
-          <ULink href="/components" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
+          <ULink to="/components" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
             Problems
           </ULink>
-          <ULink href="/examples" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
+          <ULink to="/examples" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
             Contests
           </ULink>
-          <ULink href="/blog" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
+          <ULink to="/blog" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white">
             Status
           </ULink>
-          <ULink href="/login" class="px-3 py-2 rounded-3xl bg-green-700 text-white hover:bg-gray-700 hover:text-white">
+          <ULink to="login" class="px-3 py-2 rounded-3xl bg-green-700 text-white hover:bg-gray-700 hover:text-white">
             Login
           </ULink>
           <UButton
@@ -160,7 +164,7 @@ const show_detail_id = ref(0)
               Announcements
             </h1>
             <UTooltip text="Refresh Announcements">
-              <UButton color="gray" variant="ghost" icon="i-heroicons-arrow-path-20-solid" class="-my-1" />
+              <UButton color="gray" variant="ghost" icon="i-heroicons-arrow-path-20-solid" class="-my-1" @click="toast.add({ title: 'Announcements refreshed!' })" />
             </UTooltip>
           </div>
         </template>
@@ -206,11 +210,13 @@ const show_detail_id = ref(0)
       </UCard>
     </UModal>
 
+    <UNotifications icon="i-heroicons-check-circle"/>
+
     <!-- below block is for randering the content of the page -->
     <template #fallback>
-      <div class="w-20 h-20">
-        Not Ready yet
-      </div>
+        <div class="fixed inset-0 flex items-center justify-center">
+            <div class="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-primary-500"></div>
+        </div>
     </template>
     <!-- end -->
   </ClientOnly>
