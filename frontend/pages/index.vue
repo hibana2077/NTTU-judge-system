@@ -111,54 +111,15 @@ const show_detail_id = ref(0)
 //toast function
 const toast = useToast()
 //toast function end
+
+//layout name
+const layout = 'navbar'
 </script>
 
 <template>
   <ClientOnly>
     <!-- nav bar -->
-    <UContainer class="border-black-200 border-b-2 max-w-none">
-      <nav class="flex justify-start items-center py-5 text-gray-600 border-slate-200 w-full">
-        <ULink href="/" class="flex items-center space-x-2">
-          <UImage
-            src="/logo.png"
-            alt="logo"
-            width="40"
-            height="40"
-            class="rounded-full"
-          />
-          <span class="text-xl font-bold text-green-700">NTTUOJ</span>
-        </ULink>
-        <div class="flex-grow"></div>
-        <div class="flex items-center space-x-2">
-            <ULink to="/docs" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white flex items-center">
-                <UIcon name="i-heroicons-book-open-20-solid" class="mr-2" />
-                Docs
-            </ULink>
-          <ULink to="/components" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white flex items-center">
-            <UIcon name="i-heroicons-cube-20-solid" class="mr-2" />
-            Problems
-          </ULink>
-          <ULink to="/examples" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white flex items-center">
-            <UIcon name="i-heroicons-trophy-20-solid" class="mr-2" />
-            Contests
-          </ULink>
-          <ULink to="/blog" class="px-3 py-2 rounded-md hover:bg-gray-700 hover:text-white flex items-center">
-            <UIcon name="i-heroicons-newspaper-20-solid" class="mr-2" />
-            Status
-          </ULink>
-          <ULink to="login" class="px-3 py-2 rounded-3xl bg-green-700 text-white hover:bg-gray-700 hover:text-white">
-            Login
-          </ULink>
-          <UButton
-          :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
-          color="gray"
-          variant="ghost"
-          aria-label="Theme"
-          @click="isDark = !isDark"
-          />
-        </div>
-      </nav>
-    </UContainer>
+    <NuxtLayout :name="layout" />
     <!-- table of contents **Announcements** -->
     <UContainer class="">
       <UCard class="m-10">
