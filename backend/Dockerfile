@@ -7,7 +7,7 @@ WORKDIR /app
 COPY . .
 
 RUN apt-get update
-RUN apt-get install -y python3 python3-pip curl vim git wget gcc g++ nodejs golang-go ruby-full time
+RUN apt-get install -y python3 python3-pip curl vim git wget gcc g++ nodejs golang-go ruby-full time lua5.4
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN source "$HOME/.cargo/env"
