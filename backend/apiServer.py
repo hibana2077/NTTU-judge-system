@@ -143,7 +143,7 @@ async def read_supported_details():
     @return: text
     '''
     #run shell script to get the details txt
-    subprocess.run(["bash", "../envcheck.sh"])
+    subprocess.run(["bash", "./envcheck.sh"])
     #read the details txt
     with open("envcheck.txt", "r") as f:
         details = f.read()
