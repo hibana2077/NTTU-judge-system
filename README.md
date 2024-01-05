@@ -1,12 +1,12 @@
 <!--
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-01-14 16:59:36
- * @LastEditors: hibana2077 hibana2077@gmaill.com
- * @LastEditTime: 2024-01-05 15:51:57
+ * @LastEditors: hibana2077 hibana2077@gmail.com
+ * @LastEditTime: 2024-01-06 01:15:26
  * @FilePath: \NTTU-new-gen-judge-system\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
-# Cool Online Judge System
+# Simple Online Judge System
 
 ![Nodejs](https://img.shields.io/badge/Nodejs-18.15.0-339933?style=plastic-square&logo=Node.js)
 ![docker](https://img.shields.io/badge/docker-20.10.8-2496ED?style=plastic-square&logo=docker)
@@ -20,4 +20,12 @@ This is a **Easy use** and **Easy deploy** , **Easy maintain** Online Judge Syst
 ## Features
 
 - [x] **Easy use** and **Easy deploy** , **Easy maintain**
-- [x] Modern UI
+- [ ] Modern UI
+
+## Quick Start
+
+Git clone this repo
+
+```bash
+git clone https://github.com/hibana2077/simple-oj.git
+```
