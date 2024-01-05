@@ -1,1 +1,2 @@
 judgehost 3 ds_exam 123456789
+startup ds_exam
