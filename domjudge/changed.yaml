@@ -15,6 +15,45 @@ services:
     - 8080:80
     volumes:
     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  judgehost_1_ds_exam:
+    container_name: judgehost_1_ds_exam
+    environment:
+    - CONTAINER_TIMEZONE=Asia/Taipei
+    - DAEMON_ID=0
+    - JUDGEDAEMON_PASSWORD=123456789
+    hostname: judgedaemon_1
+    image: domjudge/judgehost:latest
+    links:
+    - domserver_ds_exam:domserver
+    privileged: true
+    volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  judgehost_2_ds_exam:
+    container_name: judgehost_2_ds_exam
+    environment:
+    - CONTAINER_TIMEZONE=Asia/Taipei
+    - DAEMON_ID=1
+    - JUDGEDAEMON_PASSWORD=123456789
+    hostname: judgedaemon_2
+    image: domjudge/judgehost:latest
+    links:
+    - domserver_ds_exam:domserver
+    privileged: true
+    volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  judgehost_3_ds_exam:
+    container_name: judgehost_3_ds_exam
+    environment:
+    - CONTAINER_TIMEZONE=Asia/Taipei
+    - DAEMON_ID=2
+    - JUDGEDAEMON_PASSWORD=123456789
+    hostname: judgedaemon_3
+    image: domjudge/judgehost:latest
+    links:
+    - domserver_ds_exam:domserver
+    privileged: true
+    volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
   mariadb_ds_exam:
     command: --max-connections=1000
     container_name: mariadb_ds_exam

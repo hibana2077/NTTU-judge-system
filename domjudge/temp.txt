@@ -1,1 +1,1 @@
-startup ds_exam
+judgehost 3 ds_exam 123456789
