@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-01-06 00:09:24
+ # @LastEditTime: 2024-01-06 00:13:23
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -25,7 +25,7 @@ VERSION="1.0.0beta"
 # Variables
 object_name=""
 judge_host_num=0
-api_secret_name=""
+api_secret=""
 
 # Function to print a separator line
 print_separator() {
@@ -119,13 +119,14 @@ print_separator
 echo -e "${YELLOW}Get the api secret...${NC}"
 domserver_id="domserver_${object_name}"
 docker exec -it ${domserver_id} cat /opt/domjudge/domserver/etc/restapi.secret > ./domjudge/api_secret.txt
-api_secret_name=$(cat ./domjudge/api_secret.txt)
+api_secret_content=$(cat ./domjudge/api_secret.txt)
+api_secret=$(echo "$api_secret_content" | awk '{print $4}')
 echo -e "${GREEN}Successfully get the api secret.${NC}"
 
 print_separator
 
 echo -e "${YELLOW}Generating judgehost config in docker-compose.yml...${NC}"
-echo "judgehost ${judge_host_num} ${api_secret_name}" > ./domjudge/input.txt
+echo "judgehost ${judge_host_num} ${api_secret}" > ./domjudge/input.txt
 cd ./domjudge
 python3 modify.py < input.txt
 cd ..
