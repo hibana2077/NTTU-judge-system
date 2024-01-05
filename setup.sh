@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-01-06 00:45:20
+ # @LastEditTime: 2024-01-06 01:04:10
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -67,7 +67,7 @@ fi
 if ! [ -x "$(command -v docker-compose)" ]; then
   echo -e "${RED}Error: docker-compose is not installed.${NC}" >&2
   echo -e "${YELLOW}Installing docker-compose...${NC}"
-  sudo apt install docker-compose
+  sudo apt install docker-compose -y
   echo -e "${GREEN}Successfully installed docker-compose.${NC}"
 else
   echo -e "${GREEN}docker-compose is installed.${NC}"

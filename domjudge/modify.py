@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2024-01-05 14:30:08
 LastEditors: hibana2077 hibana2077@gmail.com
-LastEditTime: 2024-01-06 00:34:28
+LastEditTime: 2024-01-06 01:09:50
 FilePath: /NTTU-judge-system/domjudge/modify.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -62,6 +62,7 @@ if __name__ == '__main__':
     elif len(input_list) == 4:
         command, num, object_name, api_secret = input_list
         api_secret = api_secret.replace("\r","")
+    print(command, object_name, num, api_secret)
     if command == "startup":
         # read yaml
         data = read_yaml('./temp.yaml')
