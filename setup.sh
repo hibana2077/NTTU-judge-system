@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmaill.com
- # @LastEditTime: 2024-01-05 16:34:24
+ # @LastEditTime: 2024-01-05 18:51:09
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -21,6 +21,11 @@ NC='\033[0m' # No Color
 
 # Version
 VERSION="1.0.0beta"
+
+# Variables
+object_name=""
+judge_host_num=0
+api_secret_name=""
 
 # Function to print a separator line
 print_separator() {
@@ -76,6 +81,50 @@ if [ -f "requirements.txt" ]; then
 else
   echo -e "${GREEN}requirements.txt does not exist.${NC}"
 fi
+
+print_separator
+
+echo -e "${YELLOW}Input some information about the online judge...${NC}"
+
+# Input the name of the online judge
+echo -e "${YELLOW}Please input the name of the online judge:${NC}"
+read object_name
+
+# Input the number of the host of the online judge
+echo -e "${YELLOW}Please input the number of the judge host:${NC}"
+read judge_host_num
+
+# Show the information of the online judge
+echo -e "${YELLOW}The name of the online judge is:${NC} ${GREEN}${object_name}${NC}"
+echo -e "${YELLOW}The number of the judge host is:${NC} ${GREEN}${judge_host_num}${NC}"
+
+print_separator
+
+echo -e "${YELLOW}Generating docker-compose.yml...${NC}"
+echo "startup ${object_name}" > ./domjudge/input.txt
+cd ./domjudge
+python3 modify.py < input.txt
+cd ..
+mv ./domjudge/changed.yaml ./docker-compose.yml
+echo -e "${GREEN}Successfully generated docker-compose.yml.${NC}"
+
+print_separator
+
+echo -e "${YELLOW}Starting up the Domserver and Database...${NC}"
+
+sudo docker-compose up -d || { echo -e "${RED}docker-compose up failed${NC}" ; exit 1; }
+
+print_separator
+
+echo -e "${YELLOW}Get the api secret...${NC}"
+docker exec -it domserver cat /opt/domjudge/domserver/etc/restapi.secret > ./domjudge/api_secret.txt
+api_secret_name=$(cat ./domjudge/api_secret.txt)
+echo -e "${GREEN}Successfully get the api secret.${NC}"
+
+print_separator
+
+echo -e "${YELLOW}Generating judgehost config in docker-compose.yml...${NC}"
+
 
 print_separator
 
