@@ -11,7 +11,7 @@ services:
       - MYSQL_PASSWORD=nttucsiesec512!
       - MYSQL_DATABASE=domjudge
     command: 
-      --max-connections=3000
+      --max-connections=1000
   domserver-exam_algo:
     container_name: domserver-exam_algo
     image: domjudge/domserver:latest
