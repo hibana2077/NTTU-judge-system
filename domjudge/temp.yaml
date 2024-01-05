@@ -1,0 +1,30 @@
+# docker-compose.yml
+version: '3.9'
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=domjudge
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=domjudge
+    command: 
+      --max-connections=1000
+  domserver:
+    container_name: domserver
+    image: domjudge/domserver:latest
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    ports:
+      - 8080:80
+    environment:
+      - CONTAINER_TIMEZONE=Asia/Taipei
+      - MYSQL_HOST=mariadb
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=domjudge
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=domjudge
+    links:
+      - mariadb:mariadb

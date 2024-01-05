@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmaill.com
- # @LastEditTime: 2024-01-05 14:06:57
+ # @LastEditTime: 2024-01-05 16:34:24
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -41,6 +41,41 @@ ${NC}
 print_separator
 
 echo -e "${YELLOW}Project Start up Script ${GREEN}v${VERSION}${NC}"
+
+print_separator
+
+echo -e "${YELLOW}Checking for necessary dependencies...${NC}"
+
+# Check if docker, docker-compose, requirements.txt exist
+
+# Check if docker exists, yes->continue, no->install
+if ! [ -x "$(command -v docker)" ]; then
+  echo -e "${RED}Error: docker is not installed.${NC}" >&2
+  echo -e "${YELLOW}Installing docker...${NC}"
+  curl -sSL https://get.docker.com | sh
+  echo -e "${GREEN}Successfully installed docker.${NC}"
+else
+  echo -e "${GREEN}docker is installed.${NC}"
+fi
+
+# Check if docker-compose exists, yes->continue, no->install
+if ! [ -x "$(command -v docker-compose)" ]; then
+  echo -e "${RED}Error: docker-compose is not installed.${NC}" >&2
+  echo -e "${YELLOW}Installing docker-compose...${NC}"
+  sudo apt install docker-compose
+  echo -e "${GREEN}Successfully installed docker-compose.${NC}"
+else
+  echo -e "${GREEN}docker-compose is installed.${NC}"
+fi
+
+# Check if requirements.txt exists, yes->install, no->continue
+if [ -f "requirements.txt" ]; then
+  echo -e "${YELLOW}Installing python dependencies...${NC}"
+  sudo pip3 install -r requirements.txt
+  echo -e "${GREEN}Successfully installed python dependencies.${NC}"
+else
+  echo -e "${GREEN}requirements.txt does not exist.${NC}"
+fi
 
 print_separator
 

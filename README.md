@@ -2,7 +2,7 @@
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-01-14 16:59:36
  * @LastEditors: hibana2077 hibana2077@gmaill.com
- * @LastEditTime: 2024-01-05 15:45:54
+ * @LastEditTime: 2024-01-05 15:51:57
  * @FilePath: \NTTU-new-gen-judge-system\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -20,3 +20,4 @@ This is a **Easy use** and **Easy deploy** , **Easy maintain** Online Judge Syst
 ## Features
 
 - [x] **Easy use** and **Easy deploy** , **Easy maintain**
+- [x] Modern UI
