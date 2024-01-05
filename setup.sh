@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-01-06 00:13:23
+ # @LastEditTime: 2024-01-06 00:17:45
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -122,6 +122,7 @@ docker exec -it ${domserver_id} cat /opt/domjudge/domserver/etc/restapi.secret >
 api_secret_content=$(cat ./domjudge/api_secret.txt)
 api_secret=$(echo "$api_secret_content" | awk '{print $4}')
 echo -e "${GREEN}Successfully get the api secret.${NC}"
+echo -e "${YELLOW}The api secret is:${NC} ${GREEN}${api_secret}${NC}"
 
 print_separator
 
