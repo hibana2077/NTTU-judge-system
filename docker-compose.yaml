@@ -1,1 +1,82 @@
-version: "3.7"
+# docker-compose.yml
+version: '3.9'
+
+services:
+  mariadb-exam_algo:
+    container_name: mariadb-exam_algo
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=nttucsiesec512!
+      - MYSQL_USER=domjudge
+      - MYSQL_PASSWORD=nttucsiesec512!
+      - MYSQL_DATABASE=domjudge
+    command: 
+      --max-connections=3000
+  domserver-exam_algo:
+    container_name: domserver-exam_algo
+    image: domjudge/domserver:latest
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    ports:
+      - 999:80
+    environment:
+      - CONTAINER_TIMEZONE=Asia/Taipei
+      - MYSQL_HOST=mariadb
+      - MYSQL_ROOT_PASSWORD=nttucsiesec512!
+      - MYSQL_USER=domjudge
+      - MYSQL_PASSWORD=nttucsiesec512!
+      - MYSQL_DATABASE=domjudge
+    links:
+      - mariadb-exam_algo:mariadb
+  judgehost-0-exam_algo:
+    container_name: judgehost-0-exam_algo
+    image: domjudge/judgehost:latest
+    privileged: true
+    hostname: judgedaemon-0
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    environment:
+      - CONTAINER_TIMEZONE=Asia/Taipei
+      - DAEMON_ID=0
+      - JUDGEDAEMON_PASSWORD=RraJGxsAs5J4/RmtC/n5ecV5igTeA8DY
+    links:
+      - domserver-exam_algo:domserver
+  judgehost-1-exam_algo:
+    container_name: judgehost-1-exam_algo
+    image: domjudge/judgehost:latest
+    privileged: true
+    hostname: judgedaemon-1
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    environment:
+      - CONTAINER_TIMEZONE=Asia/Taipei
+      - DAEMON_ID=1
+      - JUDGEDAEMON_PASSWORD=RraJGxsAs5J4/RmtC/n5ecV5igTeA8DY
+    links:
+      - domserver-exam_algo:domserver
+  judgehost-2-exam_algo:
+    container_name: judgehost-2-exam_algo
+    image: domjudge/judgehost:latest
+    privileged: true
+    hostname: judgedaemon-2
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    environment:
+      - CONTAINER_TIMEZONE=Asia/Taipei
+      - DAEMON_ID=2
+      - JUDGEDAEMON_PASSWORD=RraJGxsAs5J4/RmtC/n5ecV5igTeA8DY
+    links:
+      - domserver-exam_algo:domserver
+  judgehost-3-exam_algo:
+    container_name: judgehost-3-exam_algo
+    image: domjudge/judgehost:latest
+    privileged: true
+    hostname: judgedaemon-3
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    environment:
+      - CONTAINER_TIMEZONE=Asia/Taipei
+      - DAEMON_ID=3
+      - JUDGEDAEMON_PASSWORD=RraJGxsAs5J4/RmtC/n5ecV5igTeA8DY
+    links:
+      - domserver-exam_algo:domserver
