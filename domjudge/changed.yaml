@@ -1,0 +1,27 @@
+services:
+  domserver_ds_exam:
+    container_name: domserver_ds_exam
+    environment:
+    - CONTAINER_TIMEZONE=Asia/Taipei
+    - MYSQL_HOST=mariadb
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_USER=domjudge
+    - MYSQL_PASSWORD=root
+    - MYSQL_DATABASE=domjudge
+    image: domjudge/domserver:latest
+    links:
+    - mariadb_ds_exam:mariadb
+    ports:
+    - 8080:80
+    volumes:
+    - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  mariadb_ds_exam:
+    command: --max-connections=1000
+    container_name: mariadb_ds_exam
+    environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_USER=domjudge
+    - MYSQL_PASSWORD=root
+    - MYSQL_DATABASE=domjudge
+    image: mariadb:latest
+version: '3.9'
