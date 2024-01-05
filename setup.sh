@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-01-06 00:22:19
+ # @LastEditTime: 2024-01-06 00:27:58
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -105,7 +105,7 @@ echo "startup ${object_name}" > ./domjudge/input.txt
 cd ./domjudge
 python3 modify.py < input.txt
 cd ..
-mv ./domjudge/changed.yaml ./docker-compose.yml
+cp ./domjudge/changed.yaml ./docker-compose.yml
 echo -e "${GREEN}Successfully generated docker-compose.yml.${NC}"
 
 print_separator
