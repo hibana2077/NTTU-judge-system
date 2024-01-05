@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmaill.com
 Date: 2024-01-05 14:30:08
 LastEditors: hibana2077 hibana2077@gmail.com
-LastEditTime: 2024-01-06 00:04:36
+LastEditTime: 2024-01-06 00:08:07
 FilePath: /NTTU-judge-system/domjudge/modify.py
 Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 '''
@@ -53,6 +53,10 @@ if __name__ == '__main__':
     # judgehost {num} {object_name} {api_secret}
     input_text = input("")
     input_list= input_text.split(" ")
+    command = ""
+    object_name = ""
+    num = 0
+    api_secret = ""
     if len(input_list) == 2:
         command, object_name = input_list
     elif len(input_list) == 4:
