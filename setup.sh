@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmaill.com
- # @LastEditTime: 2024-01-05 18:51:09
+ # @LastEditTime: 2024-01-05 18:56:22
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -124,6 +124,11 @@ echo -e "${GREEN}Successfully get the api secret.${NC}"
 print_separator
 
 echo -e "${YELLOW}Generating judgehost config in docker-compose.yml...${NC}"
+echo "judgehost ${judge_host_num} ${api_secret_name}" > ./domjudge/input.txt
+cd ./domjudge
+python3 modify.py < input.txt
+cd ..
+mv ./domjudge/changed.yaml ./docker-compose.yml
 
 
 print_separator
