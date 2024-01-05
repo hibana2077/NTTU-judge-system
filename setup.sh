@@ -2,8 +2,8 @@
 ###
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
- # @LastEditors: hibana2077 hibana2077@gmaill.com
- # @LastEditTime: 2024-01-05 23:57:30
+ # @LastEditors: hibana2077 hibana2077@gmail.com
+ # @LastEditTime: 2024-01-06 00:00:39
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -141,7 +141,7 @@ sudo docker-compose up --build -d || { echo -e "${RED}docker-compose up failed${
 print_separator
 
 echo -e "${YELLOW}Get Admin Password...${NC}"
-docker exec -it domserver cat /opt/domjudge/domserver/etc/initial_admin_password.secret > ./domjudge/admin_password.txt
+docker exec -it ${domserver_id} cat /opt/domjudge/domserver/etc/initial_admin_password.secret > ./domjudge/admin_password.txt
 admin_password=$(cat ./domjudge/admin_password.txt)
 echo -e "${GREEN}Successfully get the Admin Password.${NC}"
 echo -e "${YELLOW}The Admin Password is:${NC} ${GREEN}${admin_password}${NC}"
