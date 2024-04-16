@@ -25,7 +25,7 @@ This is a **Easy use** and **Easy deploy** , **Easy maintain** Online Judge Syst
 ## Quick Start
 
 ```bash
-sudo apt install make pkg-config debootstrap libcgroup-dev lsof procps gcc g++
+sudo apt install make pkg-config debootstrap libcgroup-dev lsof procps gcc g++ -y
 ```
 
 Git clone this repo
