@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-01-06 00:47:50
+ # @LastEditTime: 2024-04-17 00:39:58
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -46,6 +46,8 @@ ${NC}
 print_separator
 
 echo -e "${YELLOW}Simple OJ Cgroup setup Script ${GREEN}v${VERSION}${NC}"
+
+sudo apt install make pkg-config sudo debootstrap libcgroup-dev php-cli php-curl php-json php-xml php-zip lsof procps gcc g++ -y -qq > /dev/null
 
 print_separator
 
