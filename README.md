@@ -1,8 +1,8 @@
 <!--
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-01-14 16:59:36
- * @LastEditors: hibana2077 hibana2077@gmaill.com
- * @LastEditTime: 2024-01-06 15:46:38
+ * @LastEditors: hibana2077 hibana2077@gmail.com
+ * @LastEditTime: 2024-04-17 00:45:54
  * @FilePath: \NTTU-new-gen-judge-system\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -23,6 +23,10 @@ This is a **Easy use** and **Easy deploy** , **Easy maintain** Online Judge Syst
 - [ ] Modern UI
 
 ## Quick Start
+
+```bash
+sudo apt install make pkg-config sudo debootstrap libcgroup-dev php-cli php-curl php-json php-xml php-zip lsof procps gcc g++
+```
 
 Git clone this repo
 
