@@ -14,7 +14,7 @@ services:
       --max-connections=1000
   domserver:
     container_name: domserver
-    image: domjudge/domserver:8.2.0
+    image: domjudge/domserver:lastest
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     ports:
