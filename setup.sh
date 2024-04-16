@@ -37,6 +37,8 @@ clear
 
 sudo apt install make pkg-config sudo debootstrap libcgroup-dev php-cli php-curl php-json php-xml php-zip lsof procps gcc g++ -y -qq
 
+clear
+
 echo -e "${BLUE}
 
  _______ _____ _______  _____         _______       _____  _____
