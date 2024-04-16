@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-04-17 00:45:25
+ # @LastEditTime: 2024-04-17 01:33:03
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -31,6 +31,13 @@ api_secret=""
 print_separator() {
   echo -e "${BLUE}--------------------------------------------------------------------------------${NC}"
 }
+
+# 加入寫入權限
+
+chmod g+w /sys/fs/cgroup/cpuset
+chmod u+w /sys/fs/cgroup/cpuset
+chmod g+w /sys/fs/cgroup/memory
+chmod u+w /sys/fs/cgroup/memory
 
 sudo docker stop $(sudo docker ps -a -q)
 clear

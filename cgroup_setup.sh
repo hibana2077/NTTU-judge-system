@@ -64,13 +64,6 @@ fi
 # 更新 GRUB 配置
 sudo update-grub
 
-# 加入寫入權限
-
-chmod g+w /sys/fs/cgroup/cpuset
-chmod u+w /sys/fs/cgroup/cpuset
-chmod g+w /sys/fs/cgroup/memory
-chmod u+w /sys/fs/cgroup/memory
-
 # 重啟系統提示
 echo -e "${GREEN}Please reboot your system to apply the changes.${NC}"
 
