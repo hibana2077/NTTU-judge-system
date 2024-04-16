@@ -127,6 +127,10 @@ sudo docker-compose up -d || { echo -e "${RED}docker-compose up failed${NC}" ; e
 
 print_separator
 
+docker ps -a
+
+print_separator
+
 echo -e "${YELLOW}Get the api secret...${NC}"
 domserver_id="domserver_${object_name}"
 echo -e "${YELLOW}The domserver id is:${NC} ${GREEN}${domserver_id}${NC}"
