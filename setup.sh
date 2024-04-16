@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-01-06 01:10:49
+ # @LastEditTime: 2024-04-16 22:54:16
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -72,6 +72,16 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   echo -e "${GREEN}Successfully installed docker-compose.${NC}"
 else
   echo -e "${GREEN}docker-compose is installed.${NC}"
+fi
+
+# Install python3-pip
+if ! [ -x "$(command -v pip3)" ]; then
+  echo -e "${RED}Error: pip3 is not installed.${NC}" >&2
+  echo -e "${YELLOW}Installing pip3...${NC}"
+  sudo apt install python3-pip -y
+  echo -e "${GREEN}Successfully installed pip3.${NC}"
+else
+  echo -e "${GREEN}pip3 is installed.${NC}"
 fi
 
 # Check if requirements.txt exists, yes->install, no->continue
