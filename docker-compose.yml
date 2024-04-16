@@ -26,11 +26,13 @@ services:
       - MYSQL_USER=domjudge
       - MYSQL_PASSWORD=nttucsiesec512!
       - MYSQL_DATABASE=domjudge
+    privileged: true
     links:
       - mariadb-exam_algo:mariadb
   judgehost-0-exam_algo:
     container_name: judgehost-0-exam_algo
     image: domjudge/judgehost:latest
+    user: root
     privileged: true
     hostname: judgedaemon-0
     volumes:
@@ -44,6 +46,7 @@ services:
   judgehost-1-exam_algo:
     container_name: judgehost-1-exam_algo
     image: domjudge/judgehost:latest
+    user: root
     privileged: true
     hostname: judgedaemon-1
     volumes:
@@ -57,6 +60,7 @@ services:
   judgehost-2-exam_algo:
     container_name: judgehost-2-exam_algo
     image: domjudge/judgehost:latest
+    user: root
     privileged: true
     hostname: judgedaemon-2
     volumes:
@@ -70,6 +74,7 @@ services:
   judgehost-3-exam_algo:
     container_name: judgehost-3-exam_algo
     image: domjudge/judgehost:latest
+    user: root
     privileged: true
     hostname: judgedaemon-3
     volumes:
