@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-04-16 23:03:51
+ # @LastEditTime: 2024-04-16 23:16:55
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -129,9 +129,10 @@ print_separator
 
 echo -e "${YELLOW}Get the api secret...${NC}"
 domserver_id="domserver_${object_name}"
-docker exec -it ${domserver_id} cat /opt/domjudge/domserver/etc/restapi.secret > ./domjudge/api_secret.txt
-api_secret_content=$(cat ./domjudge/api_secret.txt)
-api_secret=$(echo "$api_secret_content" | grep "default" | awk '{print $NF}')
+docker exec -it ${domserver_id} cat /opt/domjudge/domserver/etc/restapi.secret > python3 ./domjudge/tools/spliter.py > ./domjudge/api_secret.txt
+# api_secret_content=$(cat ./domjudge/api_secret.txt)
+# api_secret=$(echo "$api_secret_content" | grep "default" | awk '{print $NF}')
+api_secret=$(cat ./domjudge/api_secret.txt)
 echo -e "${GREEN}Successfully get the api secret.${NC}"
 echo -e "${YELLOW}The api secret is:${NC} ${GREEN}${api_secret}${NC}"
 
