@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-04-16 23:36:55
+ # @LastEditTime: 2024-04-16 23:40:12
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -127,6 +127,9 @@ sudo docker-compose up -d || { echo -e "${RED}docker-compose up failed${NC}" ; e
 
 print_separator
 
+# wait for the domserver to start up (stop 10 seconds)
+echo -e "${YELLOW}Waiting for the domserver to start up...${NC}"
+sleep 10
 docker ps -a
 
 print_separator
