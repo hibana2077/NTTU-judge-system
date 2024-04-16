@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-04-16 23:52:16
+ # @LastEditTime: 2024-04-17 00:01:47
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -87,16 +87,8 @@ fi
 # Check if requirements.txt exists, yes->install, no->continue
 if [ -f "requirements.txt" ]; then
   echo -e "${YELLOW}Installing python dependencies...${NC}"
-  # if ubuntu > 22.04, use --break-system-packages
-  if [ -x "$(command -v lsb_release)" ]; then
-    if [ "$(lsb_release -cs)" == "jammy" ]; then
-      sudo pip3 install -r requirements.txt --break-system-packages
-    else
-      sudo pip3 install -r requirements.txt
-    fi
-  else
-    sudo pip3 install -r requirements.txt
-  fi
+  # try, if failed use --break-system-packages
+  pip3 install -r requirements.txt || pip3 install -r requirements.txt --break-system-packages :all:
   echo -e "${GREEN}Successfully installed python dependencies.${NC}"
 else
   echo -e "${GREEN}requirements.txt does not exist.${NC}"
