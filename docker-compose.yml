@@ -14,7 +14,7 @@ services:
       --max-connections=1000
   domserver-exam_algo:
     container_name: domserver-exam_algo
-    image: domjudge/domserver:8.2.1
+    image: domjudge/domserver:latest
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     ports:
@@ -30,7 +30,7 @@ services:
       - mariadb-exam_algo:mariadb
   judgehost-0-exam_algo:
     container_name: judgehost-0-exam_algo
-    image: domjudge/judgehost:8.2.1
+    image: domjudge/judgehost:latest
     privileged: true
     hostname: judgedaemon-0
     volumes:
@@ -43,7 +43,7 @@ services:
       - domserver-exam_algo:domserver
   judgehost-1-exam_algo:
     container_name: judgehost-1-exam_algo
-    image: domjudge/judgehost:8.2.1
+    image: domjudge/judgehost:latest
     privileged: true
     hostname: judgedaemon-1
     volumes:
@@ -56,7 +56,7 @@ services:
       - domserver-exam_algo:domserver
   judgehost-2-exam_algo:
     container_name: judgehost-2-exam_algo
-    image: domjudge/judgehost:8.2.1
+    image: domjudge/judgehost:latest
     privileged: true
     hostname: judgedaemon-2
     volumes:
@@ -69,7 +69,7 @@ services:
       - domserver-exam_algo:domserver
   judgehost-3-exam_algo:
     container_name: judgehost-3-exam_algo
-    image: domjudge/judgehost:8.2.1
+    image: domjudge/judgehost:latest
     privileged: true
     hostname: judgedaemon-3
     volumes:
