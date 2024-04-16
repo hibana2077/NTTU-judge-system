@@ -47,8 +47,6 @@ print_separator
 
 echo -e "${YELLOW}Simple OJ Cgroup setup Script ${GREEN}v${VERSION}${NC}"
 
-sudo apt install make pkg-config sudo debootstrap libcgroup-dev php-cli php-curl php-json php-xml php-zip lsof procps gcc g++ -y -qq > /dev/null
-
 print_separator
 
 # 檔案路徑
