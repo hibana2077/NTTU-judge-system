@@ -3,7 +3,7 @@
  # @Author: hibana2077 hibana2077@gmail.com
  # @Date: 2023-11-09 10:52:11
  # @LastEditors: hibana2077 hibana2077@gmail.com
- # @LastEditTime: 2024-04-17 00:42:25
+ # @LastEditTime: 2024-04-17 00:45:25
  # @FilePath: \work_2023_fall\stop_all.sh
  # @Description: This script should be run in sudo mode. 
  # It includes error handling and user prompts for critical actions with color-coded messages.
@@ -33,10 +33,6 @@ print_separator() {
 }
 
 sudo docker stop $(sudo docker ps -a -q)
-clear
-
-sudo apt install make pkg-config sudo debootstrap libcgroup-dev php-cli php-curl php-json php-xml php-zip lsof procps gcc g++ -y -qq
-
 clear
 
 echo -e "${BLUE}
