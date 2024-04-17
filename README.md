@@ -1,8 +1,8 @@
 <!--
  * @Author: hibana2077 hibana2077@gmail.com
  * @Date: 2023-01-14 16:59:36
- * @LastEditors: hibana2077 hibana2077@gmail.com
- * @LastEditTime: 2024-04-17 00:47:01
+ * @LastEditors: hibana2077 hibana2077@gmaill.com
+ * @LastEditTime: 2024-04-17 10:45:27
  * @FilePath: \NTTU-new-gen-judge-system\README.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -53,7 +53,8 @@ This application is running on port 8080. You can change type `http://{your ip}:
 
 ## Support OS
 
-- [x] Ubuntu 22.04
+- [x] Ubuntu 23.10
+- [x] Ubuntu 22.04 LTS
 - [x] Debian 12
 
 ## Reference
